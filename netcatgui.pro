@@ -4,6 +4,7 @@
 QT += core gui widgets network
 TARGET = netcatgui
 TEMPLATE = app
+QMAKE_LFLAGS += -no-pie
 SOURCES += src/main.cpp \
     src/netcatgui.cpp \
     src/widgets/ncsessionwidget.cpp \
