@@ -3,6 +3,7 @@
 
 #include "ncsessionwidget.h"
 #include <QTcpSocket>
+#include <QUdpSocket>
 
 class NcSessionConnectWidget : public NcSessionWidget
 {
@@ -21,7 +22,9 @@ private slots:
     void sendMessageToHost();
 
 private:
+    bool isUDP;
     QTcpSocket hostConnection;
+    QUdpSocket hostUDPConnection;
 };
 
 #endif // NCSESSIONCONNECTWIDGET_H

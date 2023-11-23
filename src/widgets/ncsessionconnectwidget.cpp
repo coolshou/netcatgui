@@ -41,7 +41,7 @@ void NcSessionConnectWidget::startConnect()
 
     hostname = ui->addressComboBox->currentText();
     port = ui->portComboBox->currentText();
-
+    isUDP = ui->cb_UDP->isChecked();
     if(hostname.isEmpty()){
         QMessageBox::warning(this, "No host specified", "You need to type a hostname in either domain or ip address to connect to.");
         return;
@@ -65,8 +65,11 @@ void NcSessionConnectWidget::startConnect()
         return;
     }
     /*initiate connection*/
-    hostConnection.connectToHost(hostInfo.hostName(), port.toInt());
-
+    if (isUDP){
+        hostUDPConnection.connectToHost(hostInfo.hostName(), port.toInt());
+    }else{
+        hostConnection.connectToHost(hostInfo.hostName(), port.toInt());
+    }
     ui->startButton->setText(tr("Connecting..."));
     setStatusMessage("Connecting...");
     emit statusChanged();
