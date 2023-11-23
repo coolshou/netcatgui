@@ -1,0 +1,17 @@
+Source: netcatgui
+Section: network
+Priority: optional
+Maintainer: coolshou <coolshou2060@gmail.com>
+Build-Depends: debhelper-compat (= 13), qtbase5-dev, make, gcc
+Standards-Version: 4.6.0
+Homepage: https://github.com/coolshou/netcatgui.git
+#Vcs-Browser: https://salsa.debian.org/debian/netcatgui
+#Vcs-Git: https://salsa.debian.org/debian/netcatgui.git
+Rules-Requires-Root: no
+
+Package: netcatgui
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: a simple gui program that is set to emulate netcat(nc)
+ NetcatGUI is a simple gui program that is set to emulate the popular
+ network "swiss army knife" tool called netcat(nc)
