@@ -1,9 +1,13 @@
-# -------------------------------------------------
-# Project created by QtCreator 2010-03-11T14:45:34
-# -------------------------------------------------
-QT += core gui widgets network
 TARGET = netcatgui
 TEMPLATE = app
+
+
+QT += core gui network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+INCLUDEPATH += src/ \
+    src/widgets/
+
 QMAKE_LFLAGS += -no-pie
 SOURCES += src/main.cpp \
     src/netcatgui.cpp \
