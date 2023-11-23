@@ -29,7 +29,21 @@ OTHER_FILES += \
     resources/icons/icons_readme.txt \
     resources/icons/connect.png \
     resources/ncgui.rc \
-    resources/icons/save.png
+    resources/icons/save.png \
+    resources/icons/netcatgui.png 
+
+unix {
+
+    DESKTOP.files += \
+        src/netcatgui.desktop
+    DESKTOP.path += \
+        "/usr/share/applications/"
+    IMAGES.files += \
+        resources/icons/netcatgui.png 
+    IMAGES.path += \
+        "/usr/share/pixmaps/"
+    INSTALLS += DESKTOP IMAGES
+}
 
 RESOURCES += \
     resources/resources.qrc

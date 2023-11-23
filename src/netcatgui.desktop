@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=netcatgui
+Comment=a simple gui program emulate netcat(nc)
+Icon=netcatgui
+Exec=netcatgui
+Terminal=false
+X-GNOME-WMName=netcatgui
+Categories=Network;Qt;
+StartupNotify=true
+StartupWMClass=netcatgui
