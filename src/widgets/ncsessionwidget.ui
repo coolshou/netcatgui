@@ -196,16 +196,29 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="sendButton">
-        <property name="toolTip">
-         <string>Send Message</string>
-        </property>
-        <property name="text">
-         <string>Send</string>
-        </property>
-        <property name="shortcut">
-         <string>Return</string>
-        </property>
+       <widget class="QWidget" name="widget" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QPushButton" name="clearButton">
+           <property name="text">
+            <string>Clear</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="sendButton">
+           <property name="toolTip">
+            <string>Send Message</string>
+           </property>
+           <property name="text">
+            <string>Send</string>
+           </property>
+           <property name="shortcut">
+            <string>Return</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>

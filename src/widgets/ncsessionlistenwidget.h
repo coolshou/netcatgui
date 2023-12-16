@@ -23,6 +23,7 @@ private slots:
     void acceptConnection();
     void connectionDataAvailable();
     void sendMessageToClient();
+    void clearSessionText();
 
 private:
     QTcpServer tcpListenServer;

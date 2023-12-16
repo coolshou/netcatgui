@@ -1,3 +1,9 @@
+netcatgui (1.0.2023.1216) UNRELEASED; urgency=medium
+
+  * add clear button
+
+ -- coolshou <coolshou2060@gmail.com>  Sat, 16 Dec 2023 09:54:09 +0800
+
 netcatgui (1.0-1) unstable; urgency=medium
 
   * Initial release 
