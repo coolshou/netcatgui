@@ -27,7 +27,7 @@ NcSessionListenWidget::NcSessionListenWidget(QWidget *parent, bool EndMessagesWi
     ui->addressComboBox->setCurrentIndex(ui->addressComboBox->count()-1);
     ui->addressComboBox->addItem(QHostAddress(QHostAddress::AnyIPv6).toString());
     ui->addressComboBox->addItem(QHostAddress(QHostAddress::Broadcast).toString());
-
+    // TODO: UDP ui->cb_UDP...
 
     QObject::connect(ui->startButton, SIGNAL(clicked()), this, SLOT(startListen()));
     QObject::connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(sendMessageToClient()));
@@ -122,10 +122,10 @@ void NcSessionListenWidget::hostDisconnect()
 
 void NcSessionListenWidget::hostConnectionError(QAbstractSocket::SocketError socketError)
 {
-    hostDisconnect();
+//    hostDisconnect(); // this will cause app crash on RemoteHostClosedError
 
     if (socketError == QTcpSocket::RemoteHostClosedError){
-        QMessageBox::critical(this, tr("Connection closed"), tr("The remote host closed the connection."));
+        QMessageBox::critical(this, tr("Connection closed"), tr("The remote host %1 closed the connection.").arg(hostConnection->peerAddress().toString()));
         return;
     }
 
@@ -138,6 +138,7 @@ void NcSessionListenWidget::acceptConnection()
 {
     hostConnection = tcpListenServer.nextPendingConnection();
     QObject::connect(hostConnection, SIGNAL(readyRead()), this, SLOT(connectionDataAvailable()));
+    QObject::connect(hostConnection, SIGNAL(aboutToClose()), this, SLOT(on_aboutToClose()));
     QObject::connect(hostConnection, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(hostConnectionError(QAbstractSocket::SocketError)));
 
     setStatusMessage("Connected");
@@ -181,6 +182,11 @@ void NcSessionListenWidget::sendMessageToClient()
 void NcSessionListenWidget::clearSessionText()
 {
     ui->sessionPlainTextEdit->clear();
+}
+
+void NcSessionListenWidget::on_aboutToClose()
+{
+    qDebug() << "on_aboutToClose" << Qt::endl;
 }
 
 void NcSessionListenWidget::connectionDataAvailable()
