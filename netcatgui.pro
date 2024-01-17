@@ -53,10 +53,12 @@ unix {
 RESOURCES += \
     resources/resources.qrc
 
-# RC_FILE = resources/ncgui.rc
-VERSION = 1.0.2024.0119
-RC_ICONS = resources/icons/netcatgui.ico
-QMAKE_TARGET_COMPANY = "coolshou.idv"
-QMAKE_TARGET_PRODUCT = "netcatgui"
-QMAKE_TARGET_DESCRIPTION = "a simple gui program that is set to emulate netcat(nc)"
-QMAKE_TARGET_COPYRIGHT = "Copyright 2023-2024 . All rights reserved."
+win32 {
+    # RC_FILE = resources/ncgui.rc
+    VERSION = 1.0.2024.0119
+    RC_ICONS = resources/icons/netcatgui.ico
+    QMAKE_TARGET_COMPANY = "coolshou.idv"
+    QMAKE_TARGET_PRODUCT = "netcatgui"
+    QMAKE_TARGET_DESCRIPTION = "a simple gui program that is set to emulate netcat(nc)"
+    QMAKE_TARGET_COPYRIGHT = "Copyright 2023-2024 . All rights reserved."
+}
