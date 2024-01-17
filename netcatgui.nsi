@@ -15,7 +15,7 @@ VIProductVersion ${APPFileVersion}
 Name "${APPNAMEANDVERSION}"
 InstallDir "$PROGRAMFILES\netcatgui"
 InstallDirRegKey HKLM "Software\${APPNAME}" ""
-OutFile "netcatgui-${APPVERSION}-setup.exe"
+OutFile "netcatgui-${APPFileVersion}-setup.exe"
 
 !include "FileFunc.nsh"
 !include "x64.nsh"
