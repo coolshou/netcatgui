@@ -140,6 +140,7 @@ Section -FinishSection
 	WriteRegStr HKLM "${ARP}" "DisplayName" "${APPNAME}"
 	WriteRegStr HKLM "${ARP}" "DisplayIcon" "$INSTDIR\netcatgui.ico"
 	WriteRegStr HKLM "${ARP}" "DisplayVersion" "${APPFileVersion}"
+	WriteRegStr HKLM "${ARP}" "Publisher" "${APPDOMAIN}"
 	WriteRegStr HKLM "${ARP}" "UninstallString" "$INSTDIR\uninstall.exe"
 	WriteUninstaller "$INSTDIR\uninstall.exe"
 
