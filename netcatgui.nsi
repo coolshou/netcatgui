@@ -26,7 +26,7 @@ SetCompressor LZMA
 !include "MUI.nsh"
 
 !define MUI_ABORTWARNING
-!define MUI_ICON "resources\icons\ncgui.ico"
+!define MUI_ICON "resources\icons\netcatgui.ico"
 !define MUI_FINISHPAGE_RUN "$INSTDIR\netcatgui.exe"
 
 !insertmacro MUI_PAGE_WELCOME
