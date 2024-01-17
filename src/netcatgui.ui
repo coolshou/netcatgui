@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/resources.qrc">
-    <normaloff>:/toolbar/icons/connect.png</normaloff>:/toolbar/icons/connect.png</iconset>
+    <normaloff>:/toolbar/icons/netcatgui.png</normaloff>:/toolbar/icons/netcatgui.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -63,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>628</width>
-     <height>21</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
