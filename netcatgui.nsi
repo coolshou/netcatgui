@@ -7,6 +7,8 @@
 !define APPDOMAIN "coolshou.idv.tw"
 !define APPURL "https://github.com/coolshou/netcatgui"
 
+!define ARP "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}"
+
 VIProductVersion ${APPFileVersion}
 !define APPNAMEANDVERSION "netcatgui ${APPVERSION}"
 !define WIN64 ; comment out for 32 bit
@@ -43,7 +45,7 @@ SetCompressor LZMA
 
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "${APPNAME}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" "${APPVERSION}"
-VIAddVersionKey /LANG=${LANG_ENGLISH} "Comments" "Quick iperf console and daemon"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "Comments" "a simple gui program that is set to emulate netcat(nc)"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "CompanyName" "${APPDOMAIN}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalTrademarks" "${APPNAME} is a trademark of ${APPDOMAIN}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright" "(C) ${APPDOMAIN}"
@@ -57,6 +59,7 @@ Section "netcatgui" Section1
 
 	; Set Section Files and Shortcuts
 	SetOutPath "$INSTDIR\"
+	File "resources\icons\netcatgui.ico"
 	File "release\D3Dcompiler_47.dll"
 	File "release\Qt5Core.dll"
 	File "release\Qt5Gui.dll"
@@ -117,13 +120,27 @@ Section "netcatgui" Section1
 	CreateShortCut "$SMPROGRAMS\netcatgui\netcatgui.lnk" "$INSTDIR\netcatgui.exe"
 	CreateShortCut "$SMPROGRAMS\netcatgui\Uninstall.lnk" "$INSTDIR\uninstall.exe"
 
+; get cumulative size of all files in and under install dir
+; report the total in KB (decimal)
+; place the answer into $0  (ignore $1 $2)
+${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
+
+; Convert the decimal KB value in $0 to DWORD
+; put it right back into $0
+IntFmt $0 "0x%08X" $0
+
+; Create/Write the reg key with the dword value
+WriteRegDWORD HKLM "${ARP}" "EstimatedSize" "$0"
+
 SectionEnd
 
 Section -FinishSection
 
 	WriteRegStr HKLM "Software\${APPNAME}" "" "$INSTDIR"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "DisplayName" "${APPNAME}"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "UninstallString" "$INSTDIR\uninstall.exe"
+	WriteRegStr HKLM "${ARP}" "DisplayName" "${APPNAME}"
+	WriteRegStr HKLM "${ARP}" "DisplayIcon" "$INSTDIR\netcatgui.ico"
+	WriteRegStr HKLM "${ARP}" "DisplayVersion" "${APPFileVersion}"
+	WriteRegStr HKLM "${ARP}" "UninstallString" "$INSTDIR\uninstall.exe"
 	WriteUninstaller "$INSTDIR\uninstall.exe"
 
 SectionEnd
@@ -137,7 +154,7 @@ SectionEnd
 Section Uninstall
 
 	;Remove from registry...
-	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}"
+	DeleteRegKey HKLM "${ARP}"
 	DeleteRegKey HKLM "SOFTWARE\${APPNAME}"
 
 	; Delete self
@@ -149,6 +166,7 @@ Section Uninstall
 	Delete "$SMPROGRAMS\netcatgui\Uninstall.lnk"
 
 	; Clean up netcatgui
+	Delete "$INSTDIR\netcatgui.ico"
 	Delete "$INSTDIR\D3Dcompiler_47.dll"
 	Delete "$INSTDIR\Qt5Core.dll"
 	Delete "$INSTDIR\Qt5Gui.dll"
