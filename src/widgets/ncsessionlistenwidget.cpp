@@ -2,6 +2,7 @@
 #include <QHostInfo>
 #include <QMessageBox>
 #include <QLineEdit>
+#include <QRegularExpression>
 
 NcSessionListenWidget::NcSessionListenWidget(QWidget *parent, bool EndMessagesWithNewLine, Encoding encoding):
                                              NcSessionWidget(parent, EndMessagesWithNewLine, encoding), hostConnection(NULL)
@@ -191,5 +192,7 @@ void NcSessionListenWidget::on_aboutToClose()
 
 void NcSessionListenWidget::connectionDataAvailable()
 {
-    ui->sessionPlainTextEdit->appendPlainText(QString(hostConnection->readAll()));
+    QString s = QString(hostConnection->readAll());
+    s.replace(QRegularExpression("[\\n\\n]+"), "\n");
+    ui->sessionPlainTextEdit->appendPlainText(s);
 }
