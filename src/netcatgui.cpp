@@ -186,7 +186,8 @@ void NetcatGUI::ncAbout()
 {
     QMessageBox::information(NULL, QString("About ") + NCGUI_PROGRAM_NAME,
                              QString(NCGUI_PROGRAM_NAME) + " v" + NCGUI_VERSION + "\n\n" +
-                             "Author: " + NCGUI_AUTHOR + "\n\n" +
+                             "Author: " + NCGUI_AUTHOR2 + "\n" +
+                             "Original Author: " + NCGUI_AUTHOR + "\n\n" +
                              "Contact E-mail: " + NCGUI_CONTACT_EMAIL + "\n\n" +
                              "License: " + NCGUI_LICENSE);
 }
