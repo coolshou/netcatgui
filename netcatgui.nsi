@@ -15,9 +15,9 @@ VIProductVersion ${APPFileVersion}
 
 ; Main Install settings
 Name "${APPNAMEANDVERSION}"
-InstallDir "$PROGRAMFILES\netcatgui"
+InstallDir "$PROGRAMFILES\${APPNAME}"
 InstallDirRegKey HKLM "Software\${APPNAME}" ""
-OutFile "netcatgui-${APPFileVersion}-setup.exe"
+OutFile "${APPNAME}-${APPFileVersion}-setup.exe"
 
 !include "FileFunc.nsh"
 !include "x64.nsh"
@@ -115,7 +115,7 @@ Section "netcatgui" Section1
 	File "release\translations\qt_tr.qm"
 	File "release\translations\qt_uk.qm"
 	File "release\translations\qt_zh_TW.qm"
-	CreateShortCut "$DESKTOP\netcatgui.lnk" "$INSTDIR\netcatgui.exe"
+	CreateShortCut "$DESKTOP\netcatgui.lnk" "$INSTDIR\netcatgui.exe" "" "$INSTDIR\netcatgui.ico"
 	CreateDirectory "$SMPROGRAMS\netcatgui"
 	CreateShortCut "$SMPROGRAMS\netcatgui\netcatgui.lnk" "$INSTDIR\netcatgui.exe"
 	CreateShortCut "$SMPROGRAMS\netcatgui\Uninstall.lnk" "$INSTDIR\uninstall.exe"
@@ -141,6 +141,7 @@ Section -FinishSection
 	WriteRegStr HKLM "${ARP}" "DisplayIcon" "$INSTDIR\netcatgui.ico"
 	WriteRegStr HKLM "${ARP}" "DisplayVersion" "${APPFileVersion}"
 	WriteRegStr HKLM "${ARP}" "Publisher" "${APPDOMAIN}"
+	WriteRegStr HKLM "${ARP}" "HelpLink" "https://github.com/coolshou/netcatgui/releases"
 	WriteRegStr HKLM "${ARP}" "UninstallString" "$INSTDIR\uninstall.exe"
 	WriteUninstaller "$INSTDIR\uninstall.exe"
 
@@ -153,11 +154,6 @@ SectionEnd
 
 ;Uninstall section
 Section Uninstall
-
-	;Remove from registry...
-	DeleteRegKey HKLM "${ARP}"
-	DeleteRegKey HKLM "SOFTWARE\${APPNAME}"
-
 	; Delete self
 	Delete "$INSTDIR\uninstall.exe"
 
@@ -220,7 +216,15 @@ Section Uninstall
 
 	; Remove remaining directories
 	RMDir "$SMPROGRAMS\netcatgui"
-	RMDir "$INSTDIR\"
+	RMDir /r "$INSTDIR\"
+	${If} ${RunningX64}
+	!ifdef WIN64
+		SetRegView 64
+	!endif
+	${EndIf}
+	;Remove from registry...
+	DeleteRegKey HKLM "${ARP}"
+	DeleteRegKey HKLM "Software\${APPNAME}"
 
 SectionEnd
 
