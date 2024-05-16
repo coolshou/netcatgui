@@ -1,4 +1,10 @@
-netcatgui (1.0.2024.0131) UNRELEASED; urgency=medium
+netcatgui (1.0.2024.0516) UNRELEASED; urgency=medium
+
+  * add clearSessionText()
+
+ -- coolshou <coolshou2060@gmail.com>  Thu, 16 May 2024 16:27:25 +0800
+
+netcatgui (1.0.2024.0131) unstable; urgency=medium
 
   * replace \n\n
 
