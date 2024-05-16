@@ -3,7 +3,7 @@
 ; Define your application name
 !define APPNAME "netcatgui"
 !define APPVERSION 1.0
-!define APPFileVersion 1.0.2024.0131
+!define APPFileVersion 1.0.2024.0516
 !define APPDOMAIN "coolshou.idv.tw"
 !define APPURL "https://github.com/coolshou/netcatgui"
 
