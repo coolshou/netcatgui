@@ -55,7 +55,7 @@ RESOURCES += \
 
 win32 {
     # RC_FILE = resources/ncgui.rc
-    VERSION = 1.0.2024.0131
+    VERSION = 1.0.2024.0516
     RC_ICONS = resources/icons/netcatgui.ico
     QMAKE_TARGET_COMPANY = "coolshou.idv"
     QMAKE_TARGET_PRODUCT = "netcatgui"
