@@ -2,7 +2,7 @@
 #define UTIL_H
 
 #define NCGUI_PROGRAM_NAME      "NetcatGUI"
-#define NCGUI_VERSION           "1.0.2024.0131"
+#define NCGUI_VERSION           "1.0.2024.0516"
 #define NCGUI_AUTHOR2           "Jimmy"
 #define NCGUI_AUTHOR            "Shinnok (Teodor Mircea Ionita)"
 #define NCGUI_CONTACT_EMAIL     "admin@shinnok.com"

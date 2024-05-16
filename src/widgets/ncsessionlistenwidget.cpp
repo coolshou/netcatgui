@@ -33,6 +33,7 @@ NcSessionListenWidget::NcSessionListenWidget(QWidget *parent, bool EndMessagesWi
     QObject::connect(ui->startButton, SIGNAL(clicked()), this, SLOT(startListen()));
     QObject::connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(sendMessageToClient()));
     QObject::connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clearSessionText()));
+    QObject::connect(ui->searchButton, SIGNAL(clicked()), this, SLOT(searchSessionText()));
     /*tcp listen server setup*/
     connect(&tcpListenServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
 }
@@ -183,6 +184,29 @@ void NcSessionListenWidget::sendMessageToClient()
 void NcSessionListenWidget::clearSessionText()
 {
     ui->sessionPlainTextEdit->clear();
+}
+
+void NcSessionListenWidget::searchSessionText()
+{
+    QString searchTerm = ui->searchLineEdit->text();
+    // Move cursor to the beginning
+    QTextCursor cursor =  ui->sessionPlainTextEdit->textCursor();
+    cursor.movePosition(QTextCursor::Start);
+    ui->sessionPlainTextEdit->setTextCursor(cursor);
+
+    // Highlight all occurrences of the search term
+    QTextCharFormat format;
+    format.setBackground(Qt::yellow);
+
+    while (!cursor.isNull() && !cursor.atEnd())
+    {
+        cursor = ui->sessionPlainTextEdit->document()->find(searchTerm, cursor);
+
+        if (!cursor.isNull())
+        {
+            cursor.mergeCharFormat(format);
+        }
+    }
 }
 
 void NcSessionListenWidget::on_aboutToClose()

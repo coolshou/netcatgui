@@ -24,6 +24,7 @@ private slots:
     void connectionDataAvailable();
     void sendMessageToClient();
     void clearSessionText();
+    void searchSessionText();
     void on_aboutToClose();
 
 private:
